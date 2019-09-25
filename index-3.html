@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.staticfile.org/angular.js/1.3.20/angular.min.js"></script>
+  <script>
+    var app = angular.module('myApp', []);
+    app.controller('a1', function ($scope, $rootScope, $timeout) {
+      $scope.item = {
+        price: 6,
+        quantity: 1,
+        additionCost: 10
+      }
+      $scope.sum = function(){
+        return $scope.item.price * $scope.item.quantity + $scope.item.additionCost;
+      }
+
+      // $scope.$watch('item', function(newVal, oldVal){
+      //   $scope.item.additionCost = newVal >= 100 ? 0 : 10;
+      // }, true)
+      $scope.$watch($scope.sum, function(newVal, oldVal){
+        $scope.item.additionCost = newVal >= 100 ? 0 : 10;
+      }, true)
+     
+    });
+  </script>
+
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="a1">
+      <p>price: <input type="text" ng-model='item.price' /></p>
+      <p>quantity: <input type="text" ng-model='item.quantity' /></p>
+      <p>addition cost: {{item.additionCost | currency: '¥' }}</p>
+      <p>cost: {{sum() | currency: '¥' }}</p>
+    </div>
+</body>
+</html>
