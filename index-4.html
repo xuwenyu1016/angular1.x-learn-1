@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+  <script>
+    // angular.version
+    // angular.equals(a,b);
+    var values = {
+      'name': 'John',
+      'age': '20'
+    };
+    var result = [];
+    angular.forEach(values, function (value, i) {
+      this.push(value + i);
+    }, result)
+    console.log(result);
+
+    var str = '{"name": "John", "age": "99"}';
+    var json = { "name": "John", "age": "99" };
+    // angular.fromJson(str)
+    // angular.toJson(json, true)
+
+  </script>
+
+</head>
+
+<body>
+  <div ng-app="myApp" ng-controller="a1">
+
+  </div>
+</body>
+
+</html>
