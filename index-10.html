@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+  <script>
+    var app = angular.module('myApp', []);
+    app.controller('a1', ['$scope', FnApp]);
+
+    function FnApp($scope){
+
+    }
+    FnApp.prototype.num = '123';
+    FnApp.prototype.text = 'hello';
+    FnApp.prototype.show = function(){
+      return 'angularjs';
+    }
+    // til lesson 19
+  </script>
+
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="FnApp as a1">
+      <div>{{a1.text}}: {{a1.show()}}</div>
+
+    </div>
+</body>
+</html>

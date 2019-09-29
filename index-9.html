@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.staticfile.org/angular.js/1.3.20/angular.min.js"></script>
+  <script>
+    var app = angular.module('myApp', []);
+    app.controller('a1', ['$scope', '$rootScope', '$interval', '$filter', function ($scope, $rootScope, $interval, $filter) {
+      var iNow = 5;
+      $scope.text = iNow + 'sec';
+      $scope.isDisabled = true;
+
+      var timer = $interval(function(){
+        iNow--;
+        $scope.text = iNow + 'sec';
+        
+        if(iNow == 0) {
+          $interval.cancel(timer);
+          $scope.text = 'click me';
+          $scope.isDisabled = false;
+        }
+
+      }, 1000)
+
+      $scope.content = 'hi';
+      $scope.style = "{color:'red', background:'blue'}"
+
+      $scope.arr = [['a','b'],['c','d']]
+    }]);
+
+
+  </script>
+
+  <style>
+    .red{color: red}
+    .yellow{color: yellow;}
+  </style>
+
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="a1">
+      <input type="checkbox" ng-model="input" />
+      <select name="" id="">
+        <option ng-value="">a</option>
+        <option ng-value="" ng-selected='input'>b</option>
+      </select>
+
+      <hr>
+
+      <input type="button" ng-value="text" ng-disabled="isDisabled" />
+
+      <hr>
+
+      <div ng-bind="content"></div>
+      <div ng-bind-template="ng-bind-template: {{content}},{{content}}"></div>
+
+      <hr>
+
+      <div ng-class={red:true}>{{content}}</div>
+      <div ng-style={{style}}>{{content}}</div>
+
+      <hr>
+
+      <div ng-repeat="arrOuter in arr" ng-init="outerIndex = $index">
+        <div ng-repeat="arrInner in arrOuter" ng-init="innerIndex = $index">
+          <p>{{arrInner}}:{{outerIndex}}-{{innerIndex}}</p>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
